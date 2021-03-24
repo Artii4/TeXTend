@@ -1,0 +1,45 @@
+% |---------------------|
+% |------| TeXtend |----|
+% |---------------------|
+% --- Making counters for Chapters and subchapters
+\newcount\chaptercount
+\newcount\subchaptercount
+
+% --- Fonts ---
+\font\chapterfont = cmbx10 scaled \magstep3 % Bold font
+\font\subchapterfont = cmbx10 scaled \magstep1
+\font\titlefont = cmdunh10 scaled 4000
+\font\subtitlefont = cmdunh10 scaled \magstephalf
+
+\def\chapter#1{
+    \vskip 5pt
+    \advance\chaptercount by 1
+    {
+        \chapterfont
+        \noindent\number\chaptercount. #1
+    }
+    \subchaptercount = 0
+    \vskip 5pt
+}
+\def\subchapter#1{
+    \vskip 3pt
+    \advance\subchaptercount by 1
+    {
+        \subchapterfont
+        \noindent\number\chaptercount.\number\subchaptercount. #1
+    }
+    \vskip 5pt
+}
+
+\def\newline{\hfil\break}
+
+\def\newtitle#1#2#3{
+	\centerline{\titlefont #1}
+	\vskip 5pt
+	\hrule
+	\vskip 5pt
+	\noindent{\subtitlefont#2 \hfill #3}
+	\vskip 5pt
+	\hrule
+	\vskip 20pt
+}
